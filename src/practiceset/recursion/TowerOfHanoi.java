@@ -1,4 +1,4 @@
-package practiceset;
+package practiceset.recursion;
 
 import java.util.ArrayList;
 
