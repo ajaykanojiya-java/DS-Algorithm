@@ -21,21 +21,22 @@ public class ValidateBinarySearchTree {
         root.right.left = new TreeNode(13);
         root.right.right = new TreeNode(20);
 
-        System.out.println(isValidBST(root));
+        System.out.println(isValidBSTInorder(root));
+        System.out.println(isValidBSTPreorder(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
     //Think like this: if we do an inorder traversal of a binary search tree, we will get the nodes in sorted order.
     // So, we can check if the values are in increasing order. root.val <= prev means that the current node's value is less than or equal to the previous node's value,
     // which violates the property of a binary search tree.
     // Inorder traversal, LEFT-ROOT-RIGHT
-    static boolean isValidBST(TreeNode root) {
+    static boolean isValidBSTInorder(TreeNode root) {
 
         //base case
         if(root == null)
             return true;
 
         //1.Recurse LEFT
-        if(!isValidBST(root.left))
+        if(!isValidBSTInorder(root.left))
             return false;
 
         //2. ROOT, process root node
@@ -44,6 +45,18 @@ public class ValidateBinarySearchTree {
         prev = root.val;
 
         //3. Recurse RIGHT
-        return isValidBST(root.right);
+        return isValidBSTInorder(root.right);
+    }
+
+    // In preorder traversal, ROOT-LEFT-RIGHT
+    static boolean isValidBSTPreorder(TreeNode root, int min, int max){
+        if(root == null)
+            return true;
+
+        // The current node's value must be greater than the minimum value and less than the maximum value to satisfy the properties of a binary search tree.
+        return min < root.val && root.val < max
+                // Recursively check the left subtree with an updated maximum value (the current node's value) and the right subtree with an updated minimum value (the current node's value).
+                && isValidBSTPreorder(root.left, min, root.val)
+                && isValidBSTPreorder(root.right, root.val, max);
     }
 }
