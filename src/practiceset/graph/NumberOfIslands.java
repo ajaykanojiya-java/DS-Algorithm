@@ -84,4 +84,27 @@ public class NumberOfIslands {
         //process bottom node
         dfs(grid, i+1, j, visited, n, m);
     }
+
+    static void bfs(char[][] grid, int i, int j, boolean [][] visited, int n, int m){
+
+        //base case
+        if(i<0 || i>=n || j<0 || j>=m || grid[i][j] == '0' || visited[i][j]){
+            return;
+        }
+
+        //mark the cell as visited
+        visited[i][j] = true;
+
+        //process left node
+        bfs(grid, i, j-1, visited, n, m);
+
+        //process right node
+        bfs(grid, i, j+1, visited, n, m);
+
+        //process top node
+        bfs(grid, i-1, j, visited, n, m);
+
+        //process bottom node
+        bfs(grid, i+1, j, visited, n, m);
+    }
 }

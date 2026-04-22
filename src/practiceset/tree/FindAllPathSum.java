@@ -44,6 +44,7 @@ public class FindAllPathSum {
         // Check if we are at a leaf node and if the running sum equals targetSum
         if (root.left == null && root.right == null) {
             if (runningSum == targetSum) {
+                // We found a valid path, add a copy of the current path (slate) to the result list
                 result.add(new ArrayList<>(slate));
             }
         }
