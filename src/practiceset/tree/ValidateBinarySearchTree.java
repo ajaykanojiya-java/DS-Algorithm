@@ -52,6 +52,8 @@ public class ValidateBinarySearchTree {
 
     // In preorder traversal, ROOT-LEFT-RIGHT
     static boolean isValidBSTPreorder(TreeNode root, int min, int max){
+
+        //base case
         if(root == null)
             return true;
 
@@ -62,8 +64,10 @@ public class ValidateBinarySearchTree {
                 && isValidBSTPreorder(root.right, root.val, max);
     }
 
-    // In postorder traversal, LEFT-RIGHT-ROOT
+    // Preorder traversal, ROOT-LEFT-RIGHT
     static boolean isValidBSTPreorder1(TreeNode root, int min, int max){
+
+        //base case
         if(root == null)
             return true;
 
@@ -76,10 +80,16 @@ public class ValidateBinarySearchTree {
             return false;
 
         //3. Recurse RIGHT
-        return isValidBSTPreorder(root.right, root.val, max);
+        if(!isValidBSTPreorder(root.right, root.val, max))
+            return false;
+
+        return true;
     }
 
+    // Postorder traversal, LEFT-RIGHT-ROOT
     static boolean isValidBSTPostorder(TreeNode root, int min, int max){
+
+        //base case
         if(root == null)
             return true;
 
