@@ -23,6 +23,8 @@ public class ValidateBinarySearchTree {
 
         System.out.println(isValidBSTInorder(root));
         System.out.println(isValidBSTPreorder(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+        System.out.println(isValidBSTPreorder1(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+        System.out.println(isValidBSTPostorder(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
     }
 
     //Think like this: if we do an inorder traversal of a binary search tree, we will get the nodes in sorted order.
@@ -58,5 +60,38 @@ public class ValidateBinarySearchTree {
                 // Recursively check the left subtree with an updated maximum value (the current node's value) and the right subtree with an updated minimum value (the current node's value).
                 && isValidBSTPreorder(root.left, min, root.val)
                 && isValidBSTPreorder(root.right, root.val, max);
+    }
+
+    // In postorder traversal, LEFT-RIGHT-ROOT
+    static boolean isValidBSTPreorder1(TreeNode root, int min, int max){
+        if(root == null)
+            return true;
+
+        //1. ROOT, process root node
+        if (!(min < root.val && root.val < max))
+            return false;
+
+        //2. Recurse LEFT
+        if(!isValidBSTPreorder(root.left, min,root.val))
+            return false;
+
+        //3. Recurse RIGHT
+        return isValidBSTPreorder(root.right, root.val, max);
+    }
+
+    static boolean isValidBSTPostorder(TreeNode root, int min, int max){
+        if(root == null)
+            return true;
+
+        //1. Recurse LEFT
+        if(!isValidBSTPostorder(root.left, min,root.val))
+            return false;
+
+        //2. Recurse RIGHT
+        if(!isValidBSTPostorder(root.right, root.val, max))
+            return false;
+
+        //3. ROOT, process root node
+        return min < root.val && root.val < max;
     }
 }
