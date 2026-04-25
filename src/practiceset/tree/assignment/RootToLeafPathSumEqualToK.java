@@ -15,12 +15,12 @@ public class RootToLeafPathSumEqualToK {
     }
 
     static Boolean root_to_leaf_path_sum_equal_to_k(TreeNode root, Integer k) {
-        return helper(root, k, 0);
+        return helper(root, k, 0L);
     }
 
     // Time Complexity: O(n) where n is the number of nodes in the tree. We may visit each node once.
     // Space Complexity: O(h) where h is the height of the tree due to recursive call stack. In worst case (skewed tree), space is O(n). In best case
-    static boolean helper(TreeNode root, Integer k, int runningSum){
+    static boolean helper(TreeNode root, Integer k, long runningSum){
 
         if(root == null)
             return false;
