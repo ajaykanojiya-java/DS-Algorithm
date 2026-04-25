@@ -3,10 +3,10 @@ package practiceset.tree;
 import java.util.ArrayList;
 
 public class TernaryTreeNode {
-    Integer value;
-    ArrayList<TernaryTreeNode> children;
+    public Integer value;
+    public ArrayList<TernaryTreeNode> children;
 
-    TernaryTreeNode(Integer value) {
+    public TernaryTreeNode(Integer value) {
         this.value = value;
         this.children = new ArrayList(3);
     }

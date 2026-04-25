@@ -13,13 +13,13 @@ public class ValidateBinarySearchTree {
         // Input: root = [10,5,15,null,null,6,20]
         // Output: true
 
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(5);
-        root.right = new TreeNode(15);
-        root.left.left = new TreeNode(3);
-        root.left.right = new TreeNode(6);
-        root.right.left = new TreeNode(13);
-        root.right.right = new TreeNode(20);
+        TreeNode root = new TreeNode(0);
+//        root.left = new TreeNode(5);
+//        root.right = new TreeNode(15);
+//        root.left.left = new TreeNode(3);
+//        root.left.right = new TreeNode(6);
+//        root.right.left = new TreeNode(13);
+//        root.right.right = new TreeNode(20);
 
         System.out.println(isValidBSTInorder(root));
         System.out.println(isValidBSTPreorder(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
