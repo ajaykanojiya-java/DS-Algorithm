@@ -24,8 +24,8 @@ public class AllCombinationsWithSumEqualToTarget {
         input.add(2);
         input.add(3);
         input.add(4);
-//        input.add(5);
-        Integer target = 3;
+        input.add(5);
+        Integer target = 8;
         System.out.println(generate_all_combinations(input, target));
     }
 

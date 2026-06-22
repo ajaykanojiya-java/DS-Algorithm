@@ -7,12 +7,12 @@ public class CheckIfSumPossible {
     public static void main(String[] args) {
         ArrayList<Long> input = new ArrayList<>();
         input.add(0L);
-//        input.add(2L);
-//        input.add(3L);
-//        input.add(4L);
-//        input.add(5L);
+        input.add(2L);
+        input.add(3L);
+        input.add(4L);
+        input.add(5L);
         ArrayList<Long> targetSum = new ArrayList<>();
-        System.out.println(check_if_sum_possible(input, 0L));
+        System.out.println(check_if_sum_possible(input, 5L));
     }
 
     static Boolean check_if_sum_possible(ArrayList<Long> arr, Long k) {

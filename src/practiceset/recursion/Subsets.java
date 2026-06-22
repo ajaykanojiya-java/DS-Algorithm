@@ -34,7 +34,7 @@ public class Subsets {
         int value = nums[index];
         slate.add(value);
         helper(nums, index+1,slate,result);
-        slate.remove(slate.size() - 1);
+        slate.removeLast(); //need to remove element because we are using slate as object. it is not primitive
 
         //exclude the current index value in the slate
         helper(nums,index+1,slate,result);
