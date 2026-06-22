@@ -1,6 +1,7 @@
 package practiceset.recursion.set02;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /*
 Given an integer array, generate all the unique combinations of the array numbers that sum up to a given target value.
@@ -21,6 +22,7 @@ public class GenerateAllCombinationsWithSumEqualToTarget {
         arr.add(1);arr.add(1);arr.add(1);
         int target = 2;
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        Collections.sort(arr);//sorting the array to handle duplicates
         result = generate_all_combinations(arr, target);
         System.out.println(result);
     }
@@ -46,8 +48,8 @@ public class GenerateAllCombinationsWithSumEqualToTarget {
             return;
         }
 
-        //base case: if we have reached the end of the array, we can stop exploring this path
-        if(index == arr.size()){
+        //base case: if we have reached the end of the array or runningSum is greater then we can stop exploring this path
+        if(index == arr.size() || runningSum > target){
             return;
         }
 
