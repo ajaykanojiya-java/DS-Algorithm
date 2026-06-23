@@ -53,11 +53,6 @@ public class GenerateAllCombinationsWithSumEqualToTarget {
             return;
         }
 
-        //pruning: if runningSum is greater than target, we can stop exploring this path
-        if(runningSum>target){
-            return;
-        }
-
         //include part:
         slate.add(arr.get(index));
         helper(arr,target,index+1,runningSum + arr.get(index),slate,result);
