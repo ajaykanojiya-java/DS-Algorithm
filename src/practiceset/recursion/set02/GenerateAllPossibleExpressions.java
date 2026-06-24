@@ -1,13 +1,16 @@
 package practiceset.recursion.set02;
 
 import java.util.ArrayList;
-
+/*
+Given a string of digits, generate all possible expressions by inserting the operators '+', '*', or no operator (concatenation) between the
+digits such that the expression evaluates to a given target value.
+*/
 public class GenerateAllPossibleExpressions {
 
     public static void main(String[] args) {
 
-        String s = "202";
-        int target = 4;
+        String s = "211";
+        int target = 3;
 
         ArrayList<String> result = new ArrayList<>();
 
@@ -16,10 +19,12 @@ public class GenerateAllPossibleExpressions {
         System.out.println(result);
     }
 
-    private static void helper(String s,int target, int index, StringBuilder expression, long runningSum,long lastOperand,
-                               ArrayList<String> result) {
+    //Time Complexity: O(4^n) where n is the length of the input string s.
+    // In the worst case, we may have to explore all possible combinations of the digits and operators.
+    //space Complexity: O(n) where n is the length of the input string s.
+    private static void helper(String s,long target, int index, StringBuilder expression, long runningSum, long lastOperand,
+            ArrayList<String> result) {
 
-        // Base case
         if (index == s.length()) {
             if (runningSum == target) {
                 result.add(expression.toString());
@@ -27,42 +32,30 @@ public class GenerateAllPossibleExpressions {
             return;
         }
 
-        int digit = s.charAt(index) - '0';
+        int originalLength = expression.length();
+        long operand = 0;
 
-        // First number is special (no operator before it)
-        if (index == 0) {
-            expression.append(digit);
-            helper(s,target,index + 1,expression,digit,digit,result);
-            expression.setLength(expression.length() - 1);
-            return;
+        // Try every possible operand beginning at index:
+        // "0", "02", "202", etc.
+        for (int end = index; end < s.length(); end++) {
+            operand = operand * 10 + (s.charAt(end) - '0');
+            String operandText = s.substring(index, end + 1);
+
+            if (index == 0) {
+                expression.append(operandText);
+                helper(s, target, end + 1, expression,operand, operand, result);
+                expression.setLength(originalLength);
+            } else {
+                expression.append("+").append(operandText);
+                helper(s, target, end + 1, expression,runningSum + operand, operand, result);
+                expression.setLength(originalLength);
+
+
+                expression.append("*").append(operandText);
+                helper(s, target, end + 1, expression,runningSum - lastOperand + lastOperand * operand,
+                        lastOperand * operand,result);
+                expression.setLength(originalLength);
+            }
         }
-
-        int len = expression.length();
-
-        // Add operator '+'
-        expression.append("+").append(digit);
-        helper(s,target,index + 1,expression,runningSum + digit, digit,result);
-        expression.setLength(len);
-
-        // Add operator '*'
-        expression.append("*").append(digit);
-        helper(s,target,index + 1,expression,
-                runningSum - lastOperand + lastOperand * digit,lastOperand * digit,result);
-        expression.setLength(len);
-
-
-        long newOperand;
-
-        if (lastOperand >= 0) {
-            newOperand = lastOperand * 10 + digit;
-        } else {
-            newOperand = lastOperand * 10 - digit;
-        }
-
-        expression.append(digit);
-
-        helper(s,target,index + 1,expression,runningSum - lastOperand + newOperand, newOperand,result);
-
-        expression.setLength(len);
     }
 }
