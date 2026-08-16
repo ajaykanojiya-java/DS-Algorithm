@@ -22,6 +22,8 @@ Iteration	Stream	Sorted Stream	Median
 3	[3, 8, 5]	[3, 5, 8]	5
 4	[3, 8, 5, 2]	[2, 3, 5, 8]	(3 + 5) / 2 => 4
  */
+//Time Complexity: O(n log n) where n is the number of elements in the stream. Each insertion into the heaps takes O(log n) time,
+// and we perform this operation for each of the n elements in the stream.
 public class OnlineMedian {
     public static void main(String[] args) {
         ArrayList<Integer> stream = new ArrayList<>();
@@ -31,7 +33,8 @@ public class OnlineMedian {
         stream.add(2);
         System.out.println(online_median(stream));
     }
-    //
+
+    // Function to find the online median of a stream of numbers
     static ArrayList<Integer> online_median(ArrayList<Integer> stream) {
 
         ArrayList<Integer> result = new ArrayList<>();
@@ -42,11 +45,11 @@ public class OnlineMedian {
 
         for (int num : stream) {
 
-            // Step 1
+            // Step 1 insert the number into the max heap (left)
             left.offer(num);
-            // Step 2
+            // Step 2 balance the heaps by moving the largest element from left to right
             right.offer(left.poll());
-            // Step 3
+            // Step 3 ensure the max heap (left) has at least as many elements as the min heap (right)
             if (right.size() > left.size()) {
                 left.offer(right.poll());
             }
