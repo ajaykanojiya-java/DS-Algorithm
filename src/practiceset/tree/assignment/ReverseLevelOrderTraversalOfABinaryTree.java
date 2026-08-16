@@ -17,6 +17,7 @@ public class ReverseLevelOrderTraversalOfABinaryTree {
         root.left.right = new TreeNode(5);
 
         reverse_level_order_traversal(root);//output: [[4, 5], [2, 3], [1]]
+        System.out.println("Output: "+reverse_level_order_traversal(root));
     }
 
     // Time Complexity: O(n) where n is the number of nodes in the tree. We visit each node once.
@@ -58,7 +59,12 @@ public class ReverseLevelOrderTraversalOfABinaryTree {
             levelList = new ArrayList<>();
         }
         // Reverse the result list to get reverse level order traversal (from bottom to top).
-        Collections.reverse(result);
+        Collections.reverse(result); //it reverses the index of outer array list
+        /*
+            Index 0 -> [4, 5]
+            Index 1 -> [2, 3]
+            Index 2 -> [1]
+         */
         return result;
     }
 }
