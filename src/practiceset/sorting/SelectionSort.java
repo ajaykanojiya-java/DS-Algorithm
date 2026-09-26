@@ -13,10 +13,14 @@ public class SelectionSort {
         arr.add(11);
         System.out.println(selectionSort((ArrayList<Integer>) arr));
     }
+    //Time Complexity: O(n^2)
+    //Space Complexity: O(1)
     public static ArrayList<Integer> selectionSort(ArrayList<Integer> arr) {
+        // Find the minimum element in the remaining unsorted array
         for (int i = 0; i < arr.size(); i++) {
             int minValue = arr.get(i);
             int indexValue = i;
+            // Compare with the remaining elements
             for (int j = i + 1; j < arr.size(); j++) {
                 if (minValue > arr.get(j)) {
                     minValue = arr.get(j);

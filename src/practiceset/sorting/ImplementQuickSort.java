@@ -36,10 +36,10 @@ public class ImplementQuickSort {
     // This function takes last element as pivot, places the pivot element at its correct position in sorted array, and places all smaller
     // (smaller than pivot) to left of pivot and all greater elements to right of pivot
     static int partition(ArrayList<Integer> arr, int low, int high) {
-        int randomIndex = low + RANDOM.nextInt(high - low + 1);
-        swap(arr, randomIndex, high);
+
         int pivot = arr.get(high);
         int i = low - 1;
+
         for (int j = low; j < high; j++) {
             if (arr.get(j) < pivot) {
                 i++;

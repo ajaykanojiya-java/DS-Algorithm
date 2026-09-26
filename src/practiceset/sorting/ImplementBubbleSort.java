@@ -15,11 +15,13 @@ public class ImplementBubbleSort {
         ArrayList<Integer> sortedArr = bubble_sort(arr);
         System.out.println(sortedArr);
     }
-
+    //Time Complexity: O(n^2)
+    //Space Complexity: O(1)
     static ArrayList<Integer> bubble_sort(ArrayList<Integer> arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
+                // Compare adjacent elements
                 if (arr.get(j) > arr.get(j + 1)) {
                     int temp = arr.get(j);
                     arr.set(j, arr.get(j + 1));
