@@ -14,6 +14,7 @@ public class CountComponent {
 
         // Convert the 2D array of edges to a List of Lists
         List<List<Integer>> edgesList = new ArrayList<>();
+        // Loop through the edges array and convert each edge to a List<Integer>
         for (int i = 0; i < edges.length; i++) {
             List<Integer> edge = new ArrayList<>();
             edge.add(edges[i][0]);

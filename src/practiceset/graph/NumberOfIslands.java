@@ -1,8 +1,5 @@
 package practiceset.graph;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /*
 * Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
@@ -106,5 +103,36 @@ public class NumberOfIslands {
 
         //process bottom node
         bfs(grid, i+1, j, visited, n, m);
+    }
+
+    // T(n) = O(n*m) where n is the number of rows and m is the number of columns in the grid. We are processing each cell once.
+    static void dfs_enhanced(char[][] grid, int i, int j, boolean [][] visited, int n, int m){
+
+        int rows[] = {-1, 0, 1, 0};
+        //base case
+        if(i<0 || i>=n || j<0 || j>=m || grid[i][j] == '0' || visited[i][j]){
+            return;
+        }
+
+        //mark the cell as visited
+        visited[i][j] = true;
+
+        for(int k=0; k<4; k++){
+            int newRow = i+rows[k];
+            int newCol = j+rows[(k+1)%4];
+            dfs_enhanced(grid, newRow, newCol, visited, n, m);
+
+        }
+        //process left node
+        /*dfs(grid, i, j-1, visited, n, m);
+
+        //process right node
+        dfs(grid, i, j+1, visited, n, m);
+
+        //process top node
+        dfs(grid, i-1, j, visited, n, m);
+
+        //process bottom node
+        dfs(grid, i+1, j, visited, n, m);*/
     }
 }
