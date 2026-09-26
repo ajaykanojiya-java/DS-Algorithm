@@ -40,13 +40,13 @@ public class PreInPostOrderTraversal {
             return;
 
         //1. process left subtree
-        preOrder(root.left);
+        inorder(root.left);
 
         //2. process the node
         System.out.print(root.val + " ");
 
         //3. process right subtree
-        preOrder(root.right);
+        inorder(root.right);
     }
 
     public static void postOrder(TreeNode root) {
@@ -54,10 +54,10 @@ public class PreInPostOrderTraversal {
             return;
 
         //1. process left subtree
-        preOrder(root.left);
+        postOrder(root.left);
 
         //2. process right subtree
-        preOrder(root.right);
+        postOrder(root.right);
 
         //3. process the node
         System.out.print(root.val + " ");
